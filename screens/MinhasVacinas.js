@@ -6,45 +6,54 @@ import { RadioButton } from 'react-native-paper';
 import {createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../config/firebase";
 
-const CadastrarUsuario = () => { 
-  const [nome, setNome] = useState();
-  const [data, setData] = useState();
-  const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
-  const [senha2, setSenha2] = useState();
+const MinhasVacinas = () => { 
+  const [datavacinacao, setDatavacinacao] = useState();
+  const [comprovante, setComprovante] = useState();
+  const [dataproxvacinacao, setDataproxvacinacao] = useState();
   const [checked, setChecked] = React.useState('first');
 
   return (
     <View style={styles.container}>
 
         <View style={styles.header}>
-            <Image  style={styles.logo} source={require('../imagens/logoMenor.png')}/>
+            <Image  style={styles.menuHamburguer} source={require('../imagens/menuHamburguer.png')}/>
+            <Text style={styles.textHeader}> Minhas Vacinas </Text>
         </View>
 
         <View>
-          <MyInput input="Nome completo" valor={nome} style={styles.input}/>
+          <MyInput input="Data de Vacinação" valor={datavacinacao} style={styles.input}/>
 
           <View style={styles.sexo}>
-              <Text style={styles.text}> Sexo </Text>
-              <View style={styles.alinharSexo}>
+              <Text style={styles.text}> Dose </Text>
+
+              <View style={styles.alinharDose}>
                   <View style={styles.alinharSexo}>
                       <RadioButton value="first"  status={ checked === 'first' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked('first')} />
-                      <Text style={styles.textSexo}> Masculino </Text>
+                      <Text style={styles.textSexo}> 1a.dose </Text>
                   </View>
-
                   <View style={styles.alinharSexo}>
                       <RadioButton value="second" status={ checked === 'second' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked('second')}/>
-                      <Text style={styles.textSexo}> Feminino </Text>
+                      <Text style={styles.textSexo}> 2a.dose </Text>
+                  </View>
+                  <View style={styles.alinharSexo}>
+                      <RadioButton value="second" status={ checked === 'second' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked('second')}/>
+                      <Text style={styles.textSexo}> 3a.dose </Text>
+                  </View>
+                  <View style={styles.alinharSexo}>
+                      <RadioButton value="second" status={ checked === 'second' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked('second')}/>
+                      <Text style={styles.textSexo}> 4a.dose </Text>
                   </View>
               </View>
+              
          </View>
 
-          <MyInput input="Data de nascimento" valor={data} style={styles.input}/>
-          <MyInput input="E-mail" valor={email} style={styles.input}/>
-          <MyInput input="Senha" valor={senha} style={styles.input}/>
-          <MyInput input="Repetir senha" valor={senha2} style={styles.input}/>
+
+          <MyInput input="Comprovante" valor={comprovante} style={styles.input}/>
+          <MyInput input="Próxima Vacinação" valor={dataproxvacinacao} style={styles.input}/>
         </View>
 
         <TouchableOpacity style={styles.criarConta} >
@@ -67,6 +76,19 @@ const styles = StyleSheet.create({
     height: 80,
     width: '100%',
     marginBottom: 100,
+    display: 'flex',
+    flexDirection: "row",
+    alignItems: 'center',
+  },
+  menuHamburguer: {
+    width: 50,
+    height: 35,
+    marginLeft: 20,
+  },
+  textHeader: {
+    fontSize: 28,
+    fontFamily:  'AveriaLibre-Regular',
+    color: '#419ED7',
   },
   logo: {
     marginTop: 14,
@@ -107,6 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'AveriaLibre-Regular',
   },
+
   alinharSexo: {
     display: 'flex',
     flexDirection: "row",
@@ -118,7 +141,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default CadastrarUsuario;
+export default MinhasVacinas;
 
 /*
 const App = () => {
