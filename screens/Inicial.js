@@ -4,17 +4,24 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 import MyInput from "../components/MyInput";
 import MyButton from "../components/MyButton";
 
-
-// const Stack = createNativeStackNavigator ();
-
 //Especificação do componente
 const Inicial = (props) => {  
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
 
-  const goCadastrarUsuario = () => {
-    props.navigation.navigate('CadastrarUsuario')
-}
+
+    const goToCardVacina = () => {
+      props.navigation.navigate('CardVacina')
+    }
+  
+    const goToCadastrarUsuario = () => {
+      props.navigation.push('CadastrarUsuario')
+    }
+
+    const goToRecuperarSenha = () => {
+      props.navigation.push('RecuperarSenha')
+    }
+
   return (
     
   <View style={styles.container}> 
@@ -29,15 +36,17 @@ const Inicial = (props) => {
       </View>
 
       <View>
-      <TouchableOpacity onPress={goCadastrarUsuario}>
-          <Text>Tentando a navegação</Text>
-      </TouchableOpacity>
-      </View>
-      <View>
+        <TouchableOpacity onPress={goToCardVacina} style={styles.entrar}>
+          <Text>Entrar</Text>
+        </TouchableOpacity>
 
-        <MyButton onPress={goCadastrarUsuario} text="Entrar" style={styles.entrar} />
-        <MyButton text="Criar minha conta" style={styles.criarConta} />
-        <MyButton text="Esqueci minha senha" style={styles.esqueciSenha} />
+        <TouchableOpacity onPress={goToCadastrarUsuario} style={styles.criarConta}>
+          <Text>Cadastrar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={goToRecuperarSenha} style={styles.esqueciSenha}>
+          <Text>Esqueci minha senha</Text>
+        </TouchableOpacity>
       </View>
 
   </View>
@@ -71,14 +80,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#37BD6D',
     width: 120,
     paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingHorizontal: 38,
     marginLeft: 40,
     marginTop: 40,
     fontFamily: 'AveriaLibre-Regular',
   },
   criarConta: {
     backgroundColor: '#419ED7',
-    paddingHorizontal: 32,
+    paddingHorizontal: 56,
     paddingVertical: 12, 
     marginTop: 70,
   },

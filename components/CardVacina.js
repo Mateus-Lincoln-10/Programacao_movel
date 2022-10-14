@@ -1,30 +1,90 @@
-import {StyleSheet, Text, View, Dimensions, Image} from 'react-native'
+import React, { useState } from "react";
+import {View, Text, Image, StyleSheet,  TouchableOpacity ,TextInput } from 'react-native';
 
 const CardVacina = (props) => {
     
-    const {item} = props.item
+  const {item} = props.item
+
+    const voltar = () => {
+        props.navigation.pop()
+      }
+
+    return (
     
-    return(
-        <View style={styles.container}>
-            <Text style={styles.text}>{item.vacina}</Text>
-            <Text style={styles.text}>{item.data}</Text>
-            <Text style={styles.text}>{item.dose}</Text>
-            <Image style={{flex:1, width: 40, height: 40}} source={{uri:'https://upload.wikimedia.org/wikipedia/pt/4/43/El_Chapolin_Colorado.jpg'}} />
-            <Text style={styles.text}>{item.proximaVacina}</Text>
+    <View style={styles.container}>
+        <View style={styles.header}>
+            <Image  style={styles.menuHamburguer} source={require('../imagens/menuHamburguer.png')}/>
+            <Text style={styles.textHeader}> Minhas Vacinas </Text>
         </View>
-    )
+
+        <TouchableOpacity onPress={voltar}>
+          <Text>Voltar</Text>
+        </TouchableOpacity>
+
+        <View style={styles.container}>
+            <Text style={styles.titulo}>{item.vacina}</Text>
+            <Text style={styles.dose}>{item.dose}</Text>
+            <Text style={styles.data}>{item.data}</Text>
+            <Image style={{flex:1, width: 160, height: 80, marginBottom: 10}} source={require('../imagens/image-comprovante.png')} />
+            <Text style={styles.proximaVacina}>{item.proximaVacina}</Text>
+        </View>
+
+    </View>
+)
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'orange',
-        width: (Dimensions.get('window').width/2)-10,
-        marginVertical: 5,
-        marginHorizontal: 5
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: '#ADD4D0',
     },
-    text: {
+    header: {
+      backgroundColor: '#C1E7E3',
+      height: 80,
+      width: '100%',
+      marginBottom: 100,
+      display: 'flex',
+      flexDirection: "row",
+      alignItems: 'center',
+    },
+    menuHamburguer: {
+      width: 50,
+      height: 35,
+      marginLeft: 20,
+    },
+    textHeader: {
+      fontSize: 28,
+      fontFamily:  'AveriaLibre-Regular',
+      color: '#419ED7',
+    },
+    titulo: {
         fontSize: 20,
-    }
+        color: '#3F92C5',
+        fontFamily: 'AveriaLibre-Regular',
+
+    },
+    dose: {
+        fontSize: 16,
+        color: '#ffffff',
+        fontFamily: 'AveriaLibre-Regular',
+        width: 120,
+        backgroundColor: '#3F92C5',
+        textAlign: 'center',
+    },
+    data: {
+        fontSize: 12,
+        color: '#8B8B8B',
+        fontFamily: 'AveriaLibre-Regular',
+    },
+    proximaVacina: {
+        fontFamily: 'AveriaLibre-Regular',
+        color: '#FD7979',
+        fontSize: 12,
+        marginTop: -5,
+        marginLeft: 80,
+    },
+
 })
 
-export default CardVacina;
+export default CardVacina

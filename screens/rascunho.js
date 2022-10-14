@@ -1,17 +1,114 @@
+/*
+import {StyleSheet, Text, View, Dimensions, Image} from 'react-native'
+
+const CardVacina = (props) => {
+    
+    const {item} = props.item
+    
+    return(
+        <View style={styles.container}>
+            <Text style={styles.text}>{item.vacina}</Text>
+            <Text style={styles.text}>{item.dose}</Text>
+            <Text style={styles.text}>{item.data}</Text>
+            <Image style={{flex:1, width: 40, height: 40}} source={{uri:'https://upload.wikimedia.org/wikipedia/pt/4/43/El_Chapolin_Colorado.jpg'}} />
+            <Text style={styles.text}>{item.proximaVacina}</Text>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'orange',
+        width: (Dimensions.get('window').width/2)-10,
+        marginVertical: 5,
+        marginHorizontal: 5
+    },
+    text: {
+        fontSize: 20,
+    }
+})
+
+export default CardVacina
+
+
+
+/*
+
+import React from 'react';
+import {StyleSheet, Text, View, Dimensions, Image} from 'react-native'
+
+const CardVacina = (props) => {
+    
+    const {item} = props.item
+    
+    return(
+        <View>
+             <View style={styles.header}>
+                <Image  style={styles.menuHamburguer} source={require('../imagens/menuHamburguer.png')}/>
+                <Text style={styles.textHeader}> Minhas Vacinas </Text>
+            </View>
+
+            <View style={styles.container}>
+                <Text style={styles.titulo}>{item.vacina}</Text>
+                <Text style={styles.dose}>{item.dose}</Text>
+                <Text style={styles.data}>{item.data}</Text>
+                <Image style={{flex:1, width: 160, height: 80, marginBottom: 10}} source={require('../imagens/image-comprovante.png')} />
+                <Text style={styles.proximaVacina}>{item.proximaVacina}</Text>
+            </View>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#ffffff',
+        width: (Dimensions.get('window').width/2)-10,
+        marginVertical: 5,
+        marginHorizontal: 5,
+        display: 'flex',
+        alignItems: 'center',
+    },
+    titulo: {
+        fontSize: 20,
+        color: '#3F92C5',
+        fontFamily: 'AveriaLibre-Regular',
+
+    },
+    dose: {
+        fontSize: 16,
+        color: '#ffffff',
+        fontFamily: 'AveriaLibre-Regular',
+        width: 120,
+        backgroundColor: '#3F92C5',
+        textAlign: 'center',
+    },
+    data: {
+        fontSize: 12,
+        color: '#8B8B8B',
+        fontFamily: 'AveriaLibre-Regular',
+    },
+    proximaVacina: {
+        fontFamily: 'AveriaLibre-Regular',
+        color: '#FD7979',
+        fontSize: 12,
+        marginTop: -5,
+        marginLeft: 80,
+    },
+
+})
+
+export default CardVacina;
+-----------------
+
 import React, { useState } from "react";
 import {View, Text, Image, StyleSheet,  TouchableOpacity ,TextInput } from 'react-native';
 import MyInput from "../components/MyInput";
 import { RadioButton } from 'react-native-paper';
-import { NavigationContainer } from '@react-navigation/native';
 //import DatePicker from "react-native-datepicker";
-//import {createUserWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from "../config/firebase";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import RecuperarSenha from "./RecuperarSenha";
-import Inicial from "./Inicial";
+import {createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../config/firebase";
 
 const MinhasVacinas = () => { 
-  const Drawer = createDrawerNavigator();
   const [datavacinacao, setDatavacinacao] = useState();
   const [comprovante, setComprovante] = useState();
   const [dataproxvacinacao, setDataproxvacinacao] = useState();
@@ -20,20 +117,10 @@ const MinhasVacinas = () => {
   return (
     <View style={styles.container}>
 
-
         <View style={styles.header}>
             <Image  style={styles.menuHamburguer} source={require('../imagens/menuHamburguer.png')}/>
             <Text style={styles.textHeader}> Minhas Vacinas </Text>
         </View>
-
-        <NavigationContainer>
-          <Drawer.Navigator>
-            <Drawer.Screen name="Inicial" component={Inicial}></Drawer.Screen>
-            <Drawer.Screen name="RecuperSenha" component={RecuperarSenha}></Drawer.Screen>
-          </Drawer.Navigator>
-        </NavigationContainer>
-
-
 
         <View>
           <MyInput input="Data de Vacinação" valor={datavacinacao} style={styles.input}/>
