@@ -2,10 +2,22 @@ import React, { useState } from "react";
 import {View, Text, Image, StyleSheet,  TouchableOpacity ,TextInput } from 'react-native';
 import MyInput from "../components/MyInput";
 import MyButton from "../components/MyButton";
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth } from '../config/firebase'
 
-const RecuperarSenha = () => { 
+const RecuperarSenha = (props) => { 
 
-  const [recuperar, setRecuperar] = useState();
+  const [email, setEmail] = useState();
+
+  const recuperarSenha = () => {
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+        console.log('Email de redefinição enviado com sucesso!')
+    })
+    .catch(() => {
+        console.log('Erro ao solicitar a redefinição de senha')
+    })
+}
 
   return (
     <View style={styles.container}>
@@ -13,12 +25,15 @@ const RecuperarSenha = () => {
           <Image  style={styles.logo} source={require('../imagens/logoMenor.png')}/>
         </View>
 
-        <View style={styles.centralizarInput}>
-          <MyInput style={styles.input} input="E-mail" valor={recuperar}/>
-        </View>
+        <View style={styles.inputs}>
+            <Text style={styles.text}> E-mail </Text>
+            <TextInput style={styles.textInput} value={email} onChangeText={setEmail} placeholder=""></TextInput>
+      </View>
 
         <View>
-          <MyButton text="Recuperar senha" style={styles.recuperarSenha} />
+        <TouchableOpacity onPress={recuperarSenha} style={styles.recuperarSenha}>
+          <Text style={styles.font}>Recuperar Senha</Text>
+        </TouchableOpacity>
         </View>
     </View>
 
@@ -62,6 +77,34 @@ const styles = StyleSheet.create({
     marginTop: 160,
     fontFamily: 'AveriaLibre-Regular',
   },
+  inputs: {
+    display: 'flex',
+    flexDirection: "row",
+    alignItems: 'center',
+    marginTop: 150,
+  },
+  textInput: {
+    width: '60%',
+    textAlign: 'left',
+    fontSize: 16,
+    fontFamily: 'AveriaLibre-Regular',
+    backgroundColor: 'white',
+    color: '#3F92C5',
+    marginBottom: 20,
+    height: 40,
+  },
+  text: {
+    width: '20%',
+    textAlign: 'right',
+    fontSize: 18,
+    fontFamily: 'AveriaLibre-Regular',
+    paddingBottom: 15,
+    paddingRight: 10,
+  },
+  font: {
+    fontFamily: 'AveriaLibre-Regular',
+    marginLeft: 5,
+  }
 })
 
 export default RecuperarSenha;

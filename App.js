@@ -5,7 +5,9 @@ import CadastrarUsuario from "./screens/CadastrarUsuario";
 import Inicial from "./screens/Inicial"
 import MinhasVacinas from "./screens/MinhasVacinas"
 import RecuperarSenha from "./screens/RecuperarSenha";
-import CardVacina from "./components/CardVacina"
+import CardVacina from "./components/CardVacina";
+
+
 
 const Stack = createNativeStackNavigator()
 
@@ -14,9 +16,9 @@ const App = () => {
     <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Inicial" component={Inicial} options={{headerShown: false}}/>
-          <Stack.Screen name="CadastrarUsuario" component={CadastrarUsuario} />
+          <Stack.Screen name="CadastrarUsuario" component={CadastrarUsuario} options={{headerShown: false}}/>
           <Stack.Screen name="MinhasVacinas" component={MinhasVacinas}/>
-          <Stack.Screen name="RecuperarSenha" component={RecuperarSenha}/>
+          <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} options={{headerShown: false}}/>
           <Stack.Screen name="CardVacina" component={CardVacina}/>
         </Stack.Navigator>
     </NavigationContainer>

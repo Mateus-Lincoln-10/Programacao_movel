@@ -3,16 +3,33 @@ import {View, Text, Image, StyleSheet,  TouchableOpacity ,TextInput } from 'reac
 import MyInput from "../components/MyInput";
 import { RadioButton } from 'react-native-paper';
 //import DatePicker from "react-native-datepicker";
-import {createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import {auth} from '../config/firebase'
 
-const CadastrarUsuario = () => { 
+const CadastrarUsuario = (props) => { 
   const [nome, setNome] = useState();
   const [data, setData] = useState();
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
   const [senha2, setSenha2] = useState();
   const [checked, setChecked] = React.useState('first');
+
+  const goToInicial = () => {
+    props.navigation.push('Inicial')
+  }
+
+  const criarUsuario = () => {    
+    createUserWithEmailAndPassword(auth, email, senha)
+    .then( (userCredential) => {
+        console.log("Usuário adicionado com sucesso!")
+        props.navigation.pop()
+    })
+    .catch( (error) => {
+        console.log("Ocorreu um erro ao cadastrar usuário")
+        console.log("Erro: " + error.message)
+    })
+}
+
 
   return (
     <View style={styles.container}>
@@ -41,13 +58,23 @@ const CadastrarUsuario = () => {
               </View>
          </View>
 
-          <MyInput input="Data de nascimento" valor={data} style={styles.input}/>
-          <MyInput input="E-mail" valor={email} style={styles.input}/>
-          <MyInput input="Senha" valor={senha} style={styles.input}/>
-          <MyInput input="Repetir senha" valor={senha2} style={styles.input}/>
+          <View style={styles.inputs}>
+            <Text style={styles.text}> E-mail </Text>
+            <TextInput style={styles.textInput} value={email} onChangeText={setEmail} placeholder=""></TextInput>
+          </View>
+
+          <View style={styles.inputs}>
+            <Text style={styles.text}> Senha </Text>
+            <TextInput style={styles.textInput} value={senha} onChangeText={setSenha} placeholder=""></TextInput>
+          </View>
+
+          <View style={styles.inputs}>
+            <Text style={styles.text}> Recuperar Senha </Text>
+            <TextInput style={styles.textInput} value={senha2} onChangeText={setSenha2} placeholder=""></TextInput>
+          </View>
         </View>
 
-        <TouchableOpacity style={styles.criarConta} >
+        <TouchableOpacity style={styles.criarConta} onPress={criarUsuario} >
           <Text style={styles.font} > Cadastrar </Text>
         </TouchableOpacity>
 
@@ -80,6 +107,29 @@ const styles = StyleSheet.create({
   },
   font: {
     fontFamily: 'AveriaLibre-Regular',
+  },
+  inputs: {
+    display: 'flex',
+    flexDirection: "row",
+    alignItems: 'center',
+  },
+  textInput: {
+    width: '65%',
+    textAlign: 'left',
+    fontSize: 16,
+    fontFamily: 'AveriaLibre-Regular',
+    backgroundColor: 'white',
+    color: '#3F92C5',
+    marginBottom: 20,
+    height: 40,
+  },
+  text: {
+    width: '30%',
+    textAlign: 'right',
+    fontSize: 18,
+    fontFamily: 'AveriaLibre-Regular',
+    paddingBottom: 15,
+    paddingRight: 10,
   },
   input: {
     width: '65%',

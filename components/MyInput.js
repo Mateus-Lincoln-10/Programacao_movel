@@ -5,12 +5,12 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 //Especificação do componente
 const MyInput = (props) => {
 
-  const {input, valor, style} = props;
+  const {input, valor, text, style} = props;
    return (
     
     <View style={styles.inputs}>
       <Text style={styles.text}> {input} </Text>
-      <TextInput style={[styles.textInput, style]} value={valor} placeholder=""></TextInput>
+      <TextInput style={[styles.textInput, style]} value={valor} onChangeText={text} placeholder=""></TextInput>
     </View>
     
    ) //Fim return

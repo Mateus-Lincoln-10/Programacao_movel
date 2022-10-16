@@ -1,6 +1,8 @@
 //Imports
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../config/firebase'
 import MyInput from "../components/MyInput";
 import MyButton from "../components/MyButton";
 
@@ -9,6 +11,9 @@ const Inicial = (props) => {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
 
+    const goToTeste = () => {
+      props.navigation.push('Teste')
+    }
 
     const goToCardVacina = () => {
       props.navigation.navigate('CardVacina')
@@ -22,6 +27,19 @@ const Inicial = (props) => {
       props.navigation.push('RecuperarSenha')
     }
 
+
+    const autenticarUsuario = () => {
+      signInWithEmailAndPassword(auth, email, senha)
+      .then((userCredential) => {
+          console.log("Usuário autenticado com sucesso!")
+          props.navigation.navigate('Teste')
+      })
+      .catch( () => {
+          console.log("Falha ao autenticar: " + error.message)
+      })
+  }
+
+
   return (
     
   <View style={styles.container}> 
@@ -30,13 +48,19 @@ const Inicial = (props) => {
       <Image style={styles.logo} source={require('../imagens/logo.png')}/>
       <Text style={styles.frase}>Controle as suas vacinas e fique seguro</Text>
 
-      <View> 
-        <MyInput input="E-mail" valor={email} style={styles.input}/>
-        <MyInput input="Senha" valor={senha} style={styles.input}/>
+      <View style={styles.inputs}>
+            <Text style={styles.text}> E-mail </Text>
+            <TextInput style={styles.textInput} value={email} onChangeText={setEmail} placeholder=""></TextInput>
       </View>
 
+      <View style={styles.inputs}>
+            <Text style={styles.text}> Senha </Text>
+            <TextInput style={styles.textInput} value={senha} onChangeText={setSenha} placeholder=""></TextInput>
+      </View>
+
+
       <View>
-        <TouchableOpacity onPress={goToCardVacina} style={styles.entrar}>
+        <TouchableOpacity onPress={autenticarUsuario} style={styles.entrar}>
           <Text>Entrar</Text>
         </TouchableOpacity>
 
@@ -103,7 +127,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontFamily: 'AveriaLibre-Regular',
       paddingBottom: 15,
-      paddingRight: 10,
+      paddingRight: 5,
   },
   input: {
       width: '65%',
@@ -113,6 +137,29 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       marginBottom: 20,
       fontFamily: 'AveriaLibre-Regular',
+  },
+  inputs: {
+    display: 'flex',
+    flexDirection: "row",
+    alignItems: 'center',
+  },
+  textInput: {
+    width: '60%',
+    textAlign: 'left',
+    fontSize: 16,
+    fontFamily: 'AveriaLibre-Regular',
+    backgroundColor: 'white',
+    color: '#3F92C5',
+    marginBottom: 20,
+    height: 40,
+  },
+  text: {
+    width: '20%',
+    textAlign: 'right',
+    fontSize: 18,
+    fontFamily: 'AveriaLibre-Regular',
+    paddingBottom: 15,
+    paddingRight: 10,
   },
 }) //Fim styles
 
