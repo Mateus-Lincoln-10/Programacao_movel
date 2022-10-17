@@ -7,55 +7,56 @@ import MyInput from "../components/MyInput";
 import MyButton from "../components/MyButton";
 
 //Especificação do componente
-const Inicial = (props) => {  
+const Inicial = (props) => {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
+  const [hidePass, setHidePass] = useState(true);
 
-    const goToTeste = () => {
-      props.navigation.push('Teste')
-    }
+  const goToMinhasVacinas = () => {
+    props.navigation.push('MinhasVacinas')
+  }
 
-    const goToCardVacina = () => {
-      props.navigation.navigate('CardVacina')
-    }
-  
-    const goToCadastrarUsuario = () => {
-      props.navigation.push('CadastrarUsuario')
-    }
+  const goToCardVacina = () => {
+    props.navigation.navigate('CardVacina')
+  }
 
-    const goToRecuperarSenha = () => {
-      props.navigation.push('RecuperarSenha')
-    }
+  const goToCadastrarUsuario = () => {
+    props.navigation.push('CadastrarUsuario')
+  }
+
+  const goToRecuperarSenha = () => {
+    props.navigation.push('RecuperarSenha')
+  }
 
 
-    const autenticarUsuario = () => {
-      signInWithEmailAndPassword(auth, email, senha)
+  const autenticarUsuario = () => {
+    signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
-          console.log("Usuário autenticado com sucesso!")
-          props.navigation.navigate('Teste')
+        console.log("Usuário autenticado com sucesso!")
+        props.navigation.navigate('CardVacina')
       })
-      .catch( () => {
-          console.log("Falha ao autenticar: " + error.message)
+      .catch(() => {
+        console.log("Falha ao autenticar: " + error.message)
       })
   }
 
 
   return (
-    
-  <View style={styles.container}> 
-    
-      <Image style={styles.background} source={require("../imagens/Inicial.png")}/>
-      <Image style={styles.logo} source={require('../imagens/logo.png')}/>
+
+    <View style={styles.container}>
+
+      <Image style={styles.background} source={require("../imagens/Inicial.png")} />
+      <Image style={styles.logo} source={require('../imagens/logo.png')} />
       <Text style={styles.frase}>Controle as suas vacinas e fique seguro</Text>
 
       <View style={styles.inputs}>
-            <Text style={styles.text}> E-mail </Text>
-            <TextInput style={styles.textInput} value={email} onChangeText={setEmail} placeholder=""></TextInput>
+        <Text style={styles.text}> E-mail </Text>
+        <TextInput style={styles.textInput} value={email} onChangeText={setEmail} placeholder=""></TextInput>
       </View>
 
       <View style={styles.inputs}>
-            <Text style={styles.text}> Senha </Text>
-            <TextInput style={styles.textInput} value={senha} onChangeText={setSenha} placeholder=""></TextInput>
+        <Text style={styles.text}> Senha </Text>
+        <TextInput style={styles.textInput} value={senha} onChangeText={setSenha} placeholder="" secureTextEntry={hidePass}></TextInput>
       </View>
 
 
@@ -73,7 +74,7 @@ const Inicial = (props) => {
         </TouchableOpacity>
       </View>
 
-  </View>
+    </View>
   ) //Fim return
 } //Fim App
 
@@ -112,31 +113,31 @@ const styles = StyleSheet.create({
   criarConta: {
     backgroundColor: '#419ED7',
     paddingHorizontal: 56,
-    paddingVertical: 12, 
+    paddingVertical: 12,
     marginTop: 70,
   },
   esqueciSenha: {
     backgroundColor: '#B0CCDE',
     paddingHorizontal: 20,
-    paddingVertical: 4, 
+    paddingVertical: 4,
     marginTop: 30,
   },
   texto: {
-      width: '20%',
-      textAlign: 'right',
-      fontSize: 18,
-      fontFamily: 'AveriaLibre-Regular',
-      paddingBottom: 15,
-      paddingRight: 5,
+    width: '20%',
+    textAlign: 'right',
+    fontSize: 18,
+    fontFamily: 'AveriaLibre-Regular',
+    paddingBottom: 15,
+    paddingRight: 5,
   },
   input: {
-      width: '65%',
-      textAlign: 'left',
-      height: 40,
-      color: '#3F92C5',
-      backgroundColor: 'white',
-      marginBottom: 20,
-      fontFamily: 'AveriaLibre-Regular',
+    width: '65%',
+    textAlign: 'left',
+    height: 40,
+    color: '#3F92C5',
+    backgroundColor: 'white',
+    marginBottom: 20,
+    fontFamily: 'AveriaLibre-Regular',
   },
   inputs: {
     display: 'flex',

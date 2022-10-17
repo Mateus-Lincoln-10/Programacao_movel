@@ -16,8 +16,8 @@ const App = () => {
     <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Inicial" component={Inicial} options={{headerShown: false}}/>
+          <Stack.Screen name="MinhasVacinas" component={MinhasVacinas} options={{headerShown: false}}/>
           <Stack.Screen name="CadastrarUsuario" component={CadastrarUsuario} options={{headerShown: false}}/>
-          <Stack.Screen name="MinhasVacinas" component={MinhasVacinas}/>
           <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} options={{headerShown: false}}/>
           <Stack.Screen name="CardVacina" component={CardVacina}/>
         </Stack.Navigator>

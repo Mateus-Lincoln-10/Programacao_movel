@@ -9,10 +9,12 @@ import {auth} from '../config/firebase'
 const CadastrarUsuario = (props) => { 
   const [nome, setNome] = useState();
   const [data, setData] = useState();
+  const [dataNascimento, setDataNascimento] = useState();
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
   const [senha2, setSenha2] = useState();
   const [checked, setChecked] = React.useState('first');
+  const [hidePass, setHidePass] = useState(true);
 
   const goToInicial = () => {
     props.navigation.push('Inicial')
@@ -58,6 +60,13 @@ const CadastrarUsuario = (props) => {
               </View>
          </View>
 
+         <View style={styles.inputs}>
+            <Text style={styles.text}> Data de Nascimento </Text>
+            <TextInput style={styles.textInput2} value={dataNascimento} onChangeText={setDataNascimento} placeholder="">
+            <Image source={require('../imagens/iconData.png')}/>
+            </TextInput>
+          </View>
+
           <View style={styles.inputs}>
             <Text style={styles.text}> E-mail </Text>
             <TextInput style={styles.textInput} value={email} onChangeText={setEmail} placeholder=""></TextInput>
@@ -65,7 +74,7 @@ const CadastrarUsuario = (props) => {
 
           <View style={styles.inputs}>
             <Text style={styles.text}> Senha </Text>
-            <TextInput style={styles.textInput} value={senha} onChangeText={setSenha} placeholder=""></TextInput>
+            <TextInput style={styles.textInput} value={senha} onChangeText={setSenha} placeholder="" secureTextEntry={hidePass}></TextInput>
           </View>
 
           <View style={styles.inputs}>
@@ -165,6 +174,16 @@ const styles = StyleSheet.create({
   },
   dateComponent: {
     width: 350,
+  },
+  textInput2: {
+    width: '65%',
+    textAlign: 'right',
+    fontSize: 16,
+    fontFamily: 'AveriaLibre-Regular',
+    backgroundColor: 'white',
+    color: '#3F92C5',
+    marginBottom: 20,
+    height: 40,
   },
 })
 

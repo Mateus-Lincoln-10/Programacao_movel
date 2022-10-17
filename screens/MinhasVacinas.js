@@ -13,6 +13,7 @@ import Inicial from "./Inicial";
 const MinhasVacinas = () => { 
   const Drawer = createDrawerNavigator();
   const [datavacinacao, setDatavacinacao] = useState();
+  const [vacinacao, setVacinacao] = useState();
   const [comprovante, setComprovante] = useState();
   const [dataproxvacinacao, setDataproxvacinacao] = useState();
   const [checked, setChecked] = React.useState('first');
@@ -26,17 +27,9 @@ const MinhasVacinas = () => {
             <Text style={styles.textHeader}> Minhas Vacinas </Text>
         </View>
 
-        <NavigationContainer>
-          <Drawer.Navigator>
-            <Drawer.Screen name="Inicial" component={Inicial}></Drawer.Screen>
-            <Drawer.Screen name="RecuperSenha" component={RecuperarSenha}></Drawer.Screen>
-          </Drawer.Navigator>
-        </NavigationContainer>
-
-
-
-        <View>
+        <View style={styles.topo}>
           <MyInput input="Data de Vacinação" valor={datavacinacao} style={styles.input}/>
+          <MyInput input="Vacinação" valor={vacinacao} style={styles.input}/>
 
           <View style={styles.sexo}>
               <Text style={styles.text}> Dose </Text>
@@ -90,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C1E7E3',
     height: 80,
     width: '100%',
-    marginBottom: 100,
+    marginBottom: 50,
     display: 'flex',
     flexDirection: "row",
     alignItems: 'center',
@@ -113,13 +106,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#37BD6D',
     paddingHorizontal: 32,
     paddingVertical: 12, 
-    marginTop: 140,
+    marginTop: 80,
   },
   font: {
     fontFamily: 'AveriaLibre-Regular',
   },
+
   input: {
-    width: '65%',
+    width: '50%',
     textAlign: 'left',
     height: 40,
     color: '#3F92C5',
@@ -133,7 +127,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    width: '30%',
+    width: '35%',
     textAlign: 'right',
     fontSize: 18,
     fontFamily: 'AveriaLibre-Regular',
@@ -151,9 +145,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: -5,
   },
-  dateComponent: {
-    width: 350,
+
+  alinharDose: {
+    display: "flex",
+    flexDirection: "row",  
   },
+  topo: {
+    marginTop: 200,
+  }
 })
 
 export default MinhasVacinas;
