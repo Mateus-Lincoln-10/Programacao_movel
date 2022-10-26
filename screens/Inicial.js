@@ -16,9 +16,6 @@ const Inicial = (props) => {
     props.navigation.push('MinhasVacinas')
   }
 
-  const goToCardVacina = () => {
-    props.navigation.navigate('CardVacina')
-  }
 
   const goToCadastrarUsuario = () => {
     props.navigation.push('CadastrarUsuario')
@@ -33,7 +30,7 @@ const Inicial = (props) => {
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
         console.log("Usuário autenticado com sucesso!")
-        props.navigation.navigate('CardVacina')
+        props.navigation.navigate('Home')
       })
       .catch(() => {
         console.log("Falha ao autenticar: " + error.message)
