@@ -7,7 +7,7 @@ import MyInput from "../components/MyInput";
 import MyButton from "../components/MyButton";
 
 //Especificação do componente
-const Inicial = (props) => {
+const Login = (props) => {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
   const [hidePass, setHidePass] = useState(true);
@@ -59,15 +59,15 @@ const Inicial = (props) => {
 
       <View>
         <TouchableOpacity onPress={autenticarUsuario} style={styles.entrar}>
-          <Text>Entrar</Text>
+          <Text style={styles.font}>Entrar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={goToCadastrarUsuario} style={styles.criarConta}>
-          <Text>Cadastrar</Text>
+          <Text style={styles.font}>Cadastrar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={goToRecuperarSenha} style={styles.esqueciSenha}>
-          <Text>Esqueci minha senha</Text>
+          <Text style={styles.font}>Esqueci minha senha</Text>
         </TouchableOpacity>
       </View>
 
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#37BD6D',
     width: 120,
     paddingVertical: 10,
-    paddingHorizontal: 38,
+    paddingHorizontal: 36,
     marginLeft: 40,
     marginTop: 40,
     fontFamily: 'AveriaLibre-Regular',
@@ -159,7 +159,10 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingRight: 10,
   },
+  font: {
+    fontFamily: 'AveriaLibre-Regular',
+  }
 }) //Fim styles
 
 //Export
-export default Inicial;
+export default Login;

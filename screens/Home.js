@@ -10,7 +10,6 @@ const Home = () => {
   return(
       <Drawer.Navigator>
         <Drawer.Screen name="MinhasVacinas" component={MinhasVacinas}/>
-        <Drawer.Screen name="RecuperarSenha" component={RecuperarSenha}/>
       </Drawer.Navigator>
   )
 }
