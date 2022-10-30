@@ -79,7 +79,7 @@ const CadastrarUsuario = (props) => {
 
           <View style={styles.inputs}>
             <Text style={styles.text}> Recuperar Senha </Text>
-            <TextInput style={styles.textInput} value={senha2} onChangeText={setSenha2} placeholder=""></TextInput>
+            <TextInput style={styles.textInput} value={senha2} onChangeText={setSenha2} placeholder="" secureTextEntry={hidePass}></TextInput>
           </View>
         </View>
 

@@ -26,6 +26,7 @@ const Vacina = (props) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 40,
     backgroundColor: '#ADD4D0',
   },
   card: {
